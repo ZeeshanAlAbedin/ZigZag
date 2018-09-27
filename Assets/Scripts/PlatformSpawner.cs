@@ -28,6 +28,8 @@ public class PlatformSpawner : MonoBehaviour {
 
     public void StartSpawningPlatforms()
     {
+        Invoke("ChangeSpeed", 50f);
+        Invoke("ChangeSpeedAgain", 100f);
         InvokeRepeating("SpawnPlatforms", 0.5f, 0.2f);
     }
 
@@ -38,6 +40,8 @@ public class PlatformSpawner : MonoBehaviour {
         {
             CancelInvoke("SpawnPlatforms");
         }
+
+       // diamonds.transform.Rotate(0, 90 * Time.deltaTime, 0, 0);
     }
 
     void SpawnPlatforms()
@@ -63,7 +67,7 @@ public class PlatformSpawner : MonoBehaviour {
         lastPos = pos;
         Instantiate(platform, pos, Quaternion.identity);
 
-        int rand = Random.Range(0, 4);
+        int rand = Random.Range(0, 6);
         if (rand < 1)
         {
             Instantiate(diamonds, new Vector3(pos.x, pos.y + 1, pos.z), diamonds.transform.rotation);
@@ -80,12 +84,25 @@ public class PlatformSpawner : MonoBehaviour {
         pos.z += size;
         lastPos = pos;
         Instantiate(platform, pos, Quaternion.identity);
-        int rand = Random.Range(0, 4);
+        int rand = Random.Range(0, 6);
        if (rand < 1)
         {
 
             Instantiate(diamonds, new Vector3(pos.x, pos.y + 1, pos.z), diamonds.transform.rotation);
         }
+    }
+
+    public void ChangeSpeed()
+
+    {
+        BallController.instance.speed = 7f;
+    }
+
+
+    public void ChangeSpeedAgain()
+
+    {
+        BallController.instance.speed = 8f;
     }
 
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class GameManager : MonoBehaviour {
 
@@ -39,12 +41,26 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver()
     {
+
+     
         if (!gameOver)
         {
 
-           // AdManager.instance.ShowInterstitialAd();
+        
             ScoreManager.instance.StopScore();
             UiManager.instance.GameOver();
+
+            //if authenticated then
+
+            if (Social.localUser.authenticated)
+            {
+                LeaderBoardManager.instance.AddScoreToLeaderboard();
+            }
+          
+         
+
+
+
             gameOver = true;
         }
     }

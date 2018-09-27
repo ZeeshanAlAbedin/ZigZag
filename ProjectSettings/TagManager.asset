@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Diamond
+  - LeaderBtn
   layers:
   - Default
   - TransparentFX
